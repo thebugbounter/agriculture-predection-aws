@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Production Optimization</title>
+    <style>
+    body {
+        background-color: white; /* Change background color to white */
+        background-image: url(https://cdn.agronomag.com/wp-content/uploads/2021/08/How-to-Start-a-Farm-with-No-Money.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+     h2 {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: black;
+        color: rgb(255, 183, 0);
+        border: none;
+        border-radius: 5px;
+    }
+    .centered-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .form {
+        max-width: 500px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+    }
+    .form input[type="number"] {
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: white;
+        color: rgb(255, 183, 0);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: lightgray; /* Change the hover background color to lightgray */
+    }
+    </style>
+</head>
+<body>
+    <div class="centered-container">
+        <form class="form fform" action="/prediction" method="post">
+            <h2>Agriculture Production Optimization</h2>
+            <ol>
+                <li> <span>Nitrogen level</span> </li> 
+                <input type="number" placeholder="Enter values between 0 - 150" name="Nitrogen">
+                <br> <br>
+
+                <li> <span>Phosphorous level</span> </li> 
+                <input type="number" placeholder="Enter value between 5 - 150" value="Phosphorous" name="Phosphorous">
+                    <br> <br>
+    
+                <li> <span>Pottasium level</span> </li> 
+                <input type="number" placeholder="Enter value between 5 - 210" value="Pottasium" name="Pottasium">
+                    <br> <br>
+    
+                <li> <span>Temperature level</span> </li> 
+                <input type="number" placeholder="Enter value between 5 - 50" value="Temperature" name="Temperature">
+                    <br> <br>
+    
+                <li> <span>Humidity level</span> </li> 
+                <input type="number" placeholder="Enter value between 10 - 100" value="Humidity" name="Humidity">
+                    <br> <br>
+    
+                <li> <span>PH level</span> </li> 
+                <input type="number" placeholder="Enter value between 1 - 9" value="PH" name="PH">
+                    <br> <br>
+    
+                <li> <span>Rainfall level</span> </li> 
+                <input type="number" placeholder="Enter value between 10 - 300" value="Rainfall" name="Rainfall">
+                    <br> <br>
+                
+
+            </ol>
+             <div class="form-group">
+                <input type="submit" name="submit" value="Submit" class="btn btn-md">
+            </div>
+        </form>
+    </div>
+
+    <div class="centered-container">
+       <div class="background-container">
+           <h1 style="font-size: 60px; color: lightgray;"><b>Suitable Product:</b></h1> <!-- Change text color to lightgray -->
+           <h3 style="color: lightgray;"><b>{{ output }}</b></h3> <!-- Change text color to lightgray -->
+       </div>
+            <div class="btn-container">
+                <a href="/" class="btn btn-md">Back</a>
+            </div>
+    </div>
+    <script>
+        // Move focus to the next input on pressing Enter
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const activeElement = document.activeElement;
+                if (activeElement.tagName === 'INPUT') {
+                    const form = activeElement.closest('form');
+                    const inputs = Array.from(form.querySelectorAll('input'));
+                    const currentIndex = inputs.indexOf(activeElement);
+                    const nextIndex = (currentIndex + 1) % inputs.length;
+                    inputs[nextIndex].focus();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
